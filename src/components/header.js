@@ -1,26 +1,63 @@
 import React from 'react'
-import { Navbar, Nav, Container, Col } from 'react-bootstrap'
+import { Navbar, Nav, Container, Col, Row, Image } from 'react-bootstrap'
 import { PersonCircle } from 'react-bootstrap-icons'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { handleLogout } from '../actions/users'
 
-export const Header = () => {
+const Header = (props) => {
+    const { user, dispatch } = props
+    const logout = () => {
+        dispatch(handleLogout())
+    }
     return (
-        <Navbar bg='light' expand='sm'>
+        <Navbar bg="light" expand="lg">
             <Container>
-                <Nav>
-                    <Nav.Link href='#home'>Home</Nav.Link>
-                    <Nav.Link href='#home'>New Question</Nav.Link>
-                    <Nav.Link href='#home'>Leader Board</Nav.Link>
-                </Nav>
-                <Navbar className="justify-content-end">
-                    <Navbar.Text className='px-3'>
-                        Hello User
-                    </Navbar.Text>
-                    <PersonCircle size={32} />
-                    <Nav.Link href='#logout'>Logout</Nav.Link>
-                </Navbar>
-            </Container>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="me-auto">
+                        <Link to="/home">
+                            Home
+                        </Link>
+                        <Link to="/create-poll" >
+                            New Question
+                        </Link>
+                        <Nav.Link>Leader Board</Nav.Link>
+                    </Nav>
+                    <Col>
+                        <Row className="justify-content-end" >
+                            <Navbar.Text className='px-3'>
+                                Hello,
+                                {
+                                    user ? ' ' + user.name : ' User'
+                                }
+                            </Navbar.Text>
+                            {
+                                user ? <Image src={user.pic} alt='profile pic' className='rounded-circle' height={32} width={32} /> :
+                                    <PersonCircle size={32} />
+                            }
+                            {
+                                user ? <Nav.Item onClick={logout}>Logout</Nav.Item>
+                                    :
+                                    <Link to={user ? '#' : '/login'} >
+                                        Login
+                                    </Link>
+                            }
 
+
+                        </Row>
+                    </Col>
+                </Navbar.Collapse>
+            </Container>
         </Navbar>
     )
 }
 
+function mapStateToProps({ users }) {
+    const userId = users.authedUser
+    return {
+        user: userId ? users[userId] : false
+    }
+}
+
+export default connect(mapStateToProps)(Header)

@@ -1,14 +1,15 @@
 import React, { Fragment } from 'react'
-import { Header } from './components/header'
-import { PollsList } from './components/pollsList'
-import { LoginForm } from './components/loginForm'
-
+import { BrowserRouter as Router } from 'react-router-dom';
+import Routes from './components/routes'
+import Header from './components/header'
 function App() {
   return (
-    <Fragment>
-      <Header />
-      <LoginForm />
-    </Fragment>
+    <Router>
+      <Fragment>
+        <Header />
+        <Routes />
+      </Fragment>
+    </Router>
   );
 }
 
