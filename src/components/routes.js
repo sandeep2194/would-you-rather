@@ -7,7 +7,7 @@ import CreatePoll from './createPoll'
 import SignUpForm from './signUp'
 import { connect } from 'react-redux'
 import LeaderBoard from './leaderBoard'
-
+import FourZeroFour from './404';
 const routes = (props) => {
     const { isLoggedIn } = props
     return (
@@ -33,6 +33,7 @@ const routes = (props) => {
             <Route path="/leader-board" component={LeaderBoard} >
                 {!isLoggedIn && <Redirect to="/login" />}
             </Route>
+            <Route component={FourZeroFour} />
         </Switch>
     )
 }
