@@ -1,6 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
 import { updatePollsCreated } from './users';
-import { incrementScore } from './leaderBoard';
 
 export const CREATE_POLL = 'CREATE_POLL'
 export const UPDATE_POLL = 'UPDATE_POLL'
