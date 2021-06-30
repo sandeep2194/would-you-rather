@@ -64,14 +64,14 @@ class PollItem extends React.Component {
                                                 type='radio'
                                                 label={poll.option1}
                                                 checked={option1}
-                                                onClick={this.handleChange}
+                                                onChange={this.handleChange}
                                             />
                                             <Form.Check
                                                 name='options'
                                                 type='radio'
                                                 label={poll.option2}
                                                 checked={option2}
-                                                onClick={this.handleChange}
+                                                onChange={this.handleChange}
                                             />
 
                                         </Fragment> :
