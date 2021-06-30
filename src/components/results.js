@@ -1,8 +1,8 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
-import logo from '../logo.svg'
+import { connect } from 'react-redux'
 
-export const Results = (props) => {
+const Results = (props) => {
     return (
         <Container className='my-5'>
             <Row className="justify-content-center">
@@ -16,7 +16,7 @@ export const Results = (props) => {
 
                             </Col>
                             <Col>
-                            
+
                             </Col>
                         </Row>
                     </Col>
@@ -30,4 +30,11 @@ export const Results = (props) => {
     )
 }
 
-export default Results
+function mapStateToProps({ polls }, props) {
+    const { pollId } = props.match.params
+    return {
+        poll: polls[pollId]
+    }
+}
+
+export default connect(mapStateToProps)(Results)

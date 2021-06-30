@@ -23,6 +23,7 @@ const routes = (props) => {
             <Route path="/login" component={LoginForm} />
             <Route path="/signup" component={SignUpForm} />
             <Route path="/create-poll" component={CreatePoll} />
+            <Route path="/results/:pollId" component={Results} />
         </Switch>
     )
 }

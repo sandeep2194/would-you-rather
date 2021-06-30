@@ -4,7 +4,7 @@ import PollItem from './pollItem'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 const PollsList = (props) => {
-    const { polls } = props
+    const { polls, user } = props
     return (
         <Container className='my-5'>
             <Row className='justify-content-center'>
@@ -14,6 +14,7 @@ const PollsList = (props) => {
                             {
                                 Object.values(polls).length > 0 ?
                                     Object.values(polls).map((poll, i) => (
+                                        !user.polls_answered.includes(poll.id) &&
                                         <PollItem poll={poll} key={i} />
                                     ))
                                     :
@@ -26,6 +27,20 @@ const PollsList = (props) => {
                             }
                         </Tab>
                         <Tab eventKey="answered" title="Answered Questions">
+                            {
+                                Object.values(polls).length > 0 ?
+                                    Object.values(polls).map((poll, i) => (
+                                        user.polls_answered.includes(poll.id) &&
+                                        <PollItem poll={poll} key={i} />
+                                    ))
+                                    :
+                                    <Row className='justify-content-center '>
+                                        <span >No Questions</span>
+                                        <Link to="/home">
+                                            <span className='px-2'> Answer a Question</span>
+                                        </Link>
+                                    </Row>
+                            }
                         </Tab>
                     </Tabs>
                 </Col>
@@ -34,9 +49,11 @@ const PollsList = (props) => {
     )
 }
 
-function mapStateToProps({ polls }) {
+function mapStateToProps({ polls, users }) {
+    const userId = users.authedUser
     return {
         polls,
+        user: users[userId]
     }
 }
 

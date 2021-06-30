@@ -1,9 +1,28 @@
-
 import { v4 as uuidv4 } from 'uuid';
+import { addBoard } from './leaderBoard'
 
 export const SIGNUP = 'SIGNUP'
 export const LOGIN = 'LOGIN'
 export const LOGOUT = 'LOGOUT'
+export const UPDATE_POLLS_ANSWERED = 'UPDATE_POLLS_ANSWERED'
+export const UPDATE_POLLS_CREATED = 'UPDATE_POLLS_CREATED'
+
+export function updatePollsCreated(userId, pollId) {
+    return {
+        type: UPDATE_POLLS_CREATED,
+        userId,
+        pollId,
+    }
+}
+
+export function updatePollsAnswered(userId, pollId) {
+    return {
+        type: UPDATE_POLLS_ANSWERED,
+        userId,
+        pollId,
+    }
+}
+
 
 function login(id) {
     return {
@@ -31,6 +50,7 @@ export function handleSignup(user) {
     return (dispatch) => {
         const Id = uuidv4()
         dispatch(signup(user, Id))
+        dispatch(addBoard(Id))
     }
 }
 
