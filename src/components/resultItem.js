@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Row, Col, ProgressBar } from 'react-bootstrap'
+import { Container, Col, ProgressBar } from 'react-bootstrap'
 
 const Result = (props) => {
     const { option1, option2, results } = props.poll

@@ -18,9 +18,11 @@ class LoginForm extends React.Component {
         const { dispatch, history } = this.props
         const { id } = this.state
         event.preventDefault()
-        dispatch(handleLogin(id))
-        this.setState({ id: '' })
-        history.push('/home')
+        if (id) {
+            dispatch(handleLogin(id))
+            this.setState({ id: '' })
+            history.push('/home')
+        }
     }
     render() {
         const { users } = this.props

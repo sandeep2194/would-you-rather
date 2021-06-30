@@ -33,7 +33,7 @@ const Header = (props) => {
                                 }
                             </Navbar.Text>
                             {
-                                user ? <Image src={user.pic} alt='profile pic' className='rounded-circle' height={32} width={32} /> :
+                                user && user.pic ? <Image src={user.pic} alt='profile pic' className='rounded-circle' height={32} width={32} /> :
                                     <PersonCircle size={32} />
                             }
                             {

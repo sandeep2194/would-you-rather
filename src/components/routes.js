@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import PollsList from './pollsList'
 import LoginForm from './loginForm'
@@ -18,12 +18,17 @@ const routes = (props) => {
                         : <Redirect to='/login' />
                 }
             </Route>
-            <Route path="/home" component={PollsList}
-            />
+            <Route path="/home" component={PollsList}>
+                {!isLoggedIn && <Redirect to="/login" />}
+            </Route>
             <Route path="/login" component={LoginForm} />
             <Route path="/signup" component={SignUpForm} />
-            <Route path="/create-poll" component={CreatePoll} />
-            <Route path="/results/:pollId" component={Results} />
+            <Route path="/create-poll" component={CreatePoll} >
+                {!isLoggedIn && <Redirect to="/login" />}
+            </Route>
+            <Route path="/results/:pollId" component={Results} >
+                {!isLoggedIn && <Redirect to="/login" />}
+            </Route>
         </Switch>
     )
 }

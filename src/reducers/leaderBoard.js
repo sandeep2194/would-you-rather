@@ -6,7 +6,6 @@ export default function leaderBoard(state = {}, action) {
     switch (action.type) {
         case ADD_BOARD:
             oldState[action.userId] = { userId: action.userId, score: 0 }
-            oldState.board = []
             return { ...oldState }
         case INCREMENT_SCORE:
             let newScore = user.score + 1

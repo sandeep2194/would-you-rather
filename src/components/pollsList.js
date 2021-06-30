@@ -14,7 +14,8 @@ const PollsList = (props) => {
                             {
                                 Object.values(polls).length > 0 ?
                                     Object.values(polls).map((poll, i) => (
-                                        !user.polls_answered.includes(poll.id) &&
+
+                                        user && !user.polls_answered.includes(poll.id) &&
                                         <PollItem poll={poll} key={i} />
                                     ))
                                     :
@@ -30,15 +31,12 @@ const PollsList = (props) => {
                             {
                                 Object.values(polls).length > 0 ?
                                     Object.values(polls).map((poll, i) => (
-                                        user.polls_answered.includes(poll.id) &&
+                                        user && user.polls_answered.includes(poll.id) &&
                                         <PollItem poll={poll} key={i} />
                                     ))
                                     :
                                     <Row className='justify-content-center '>
-                                        <span >No Questions</span>
-                                        <Link to="/home">
-                                            <span className='px-2'> Answer a Question</span>
-                                        </Link>
+                                        <span >No Questions Here</span>
                                     </Row>
                             }
                         </Tab>
@@ -53,7 +51,7 @@ function mapStateToProps({ polls, users }) {
     const userId = users.authedUser
     return {
         polls,
-        user: users[userId]
+        user: users[userId] ? users[userId] : false
     }
 }
 

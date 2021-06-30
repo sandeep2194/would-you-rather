@@ -20,9 +20,11 @@ class SignUpForm extends React.Component {
         event.preventDefault()
         const { name, pic } = this.state
         const { dispatch, history } = this.props
-        dispatch(handleSignup({ name, pic }))
-        this.setState({ name: '', pic: '' })
-        history.push('/login')
+        if (name) {
+            dispatch(handleSignup({ name, pic }))
+            this.setState({ name: '', pic: '' })
+            history.push('/login')
+        }
     }
     render() {
         return (
