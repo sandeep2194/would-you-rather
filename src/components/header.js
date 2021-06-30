@@ -22,7 +22,7 @@ const Header = (props) => {
                         <Link to="/create-poll" >
                             New Question
                         </Link>
-                        <Nav.Link>Leader Board</Nav.Link>
+                        <Link to='/leader-board'>Leader Board</Link>
                     </Nav>
                     <Col>
                         <Row className="justify-content-end" >

@@ -28,6 +28,5 @@ export function handleCreatePoll(options, authorId) {
     return (dispatch) => {
         dispatch(createPoll(options, Id, authorId));
         dispatch(updatePollsCreated(authorId, Id));
-        dispatch(incrementScore(authorId))
     }
 }

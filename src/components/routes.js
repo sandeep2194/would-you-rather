@@ -6,6 +6,7 @@ import Results from './results'
 import CreatePoll from './createPoll'
 import SignUpForm from './signUp'
 import { connect } from 'react-redux'
+import LeaderBoard from './leaderBoard'
 
 const routes = (props) => {
     const { isLoggedIn } = props
@@ -27,6 +28,9 @@ const routes = (props) => {
                 {!isLoggedIn && <Redirect to="/login" />}
             </Route>
             <Route path="/results/:pollId" component={Results} >
+                {!isLoggedIn && <Redirect to="/login" />}
+            </Route>
+            <Route path="/leader-board" component={LeaderBoard} >
                 {!isLoggedIn && <Redirect to="/login" />}
             </Route>
         </Switch>
