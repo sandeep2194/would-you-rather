@@ -1,4 +1,4 @@
-import { CREATE_POLL, UPDATE_POLL } from '../actions/polls'
+import { CREATE_POLL, UPDATE_POLL, INIT_POLL } from '../actions/polls'
 
 export default function polls(state = {}, action) {
     const oldState = { ...state }
@@ -26,6 +26,8 @@ export default function polls(state = {}, action) {
             }
             oldState[action.pollId].results = results
             return { ...oldState }
+        case INIT_POLL:
+            return { ...action.polls }
         default:
             return state
     }

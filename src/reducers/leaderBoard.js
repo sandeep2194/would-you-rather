@@ -1,4 +1,4 @@
-import { INCREMENT_SCORE, ADD_BOARD } from '../actions/leaderBoard'
+import { INCREMENT_SCORE, ADD_BOARD, INIT_LEADER_BOARD } from '../actions/leaderBoard'
 
 export default function leaderBoard(state = {}, action) {
     let oldState = { ...state }
@@ -12,6 +12,8 @@ export default function leaderBoard(state = {}, action) {
             user.score = newScore
             oldState[action.userId] = user
             return { ...oldState }
+        case INIT_LEADER_BOARD:
+            return { ...action.leaderBoardObj }
         default:
             return state
     }

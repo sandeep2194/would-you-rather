@@ -1,4 +1,4 @@
-import { SIGNUP, LOGIN, LOGOUT, UPDATE_POLLS_CREATED, UPDATE_POLLS_ANSWERED } from '../actions/users'
+import { SIGNUP, LOGIN, LOGOUT, UPDATE_POLLS_CREATED, UPDATE_POLLS_ANSWERED, INIT_USER } from '../actions/users'
 
 export default function users(state = {}, action) {
     const oldState = { ...state }
@@ -32,6 +32,8 @@ export default function users(state = {}, action) {
             user.polls_answered = pollsAnswered
             oldState[action.userId] = user
             return { ...oldState }
+        case INIT_USER:
+            return { ...action.users }
         default:
             return state
     }

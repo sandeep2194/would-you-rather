@@ -16,13 +16,13 @@ const Header = (props) => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Link to="/home">
+                        <Link to="/home" className='mx-2'>
                             Home
                         </Link>
-                        <Link to="/create-poll" >
+                        <Link to="/create-poll" className='mx-2' >
                             New Question
                         </Link>
-                        <Link to='/leader-board'>Leader Board</Link>
+                        <Link to='/leader-board' className='mx-2'>Leader Board</Link>
                     </Nav>
                     <Col>
                         <Row className="justify-content-end" >
@@ -37,9 +37,9 @@ const Header = (props) => {
                                     <PersonCircle size={32} />
                             }
                             {
-                                user ? <Nav.Item onClick={logout}>Logout</Nav.Item>
+                                user ? <Nav.Item onClick={logout} className='mx-2 mt-1'>Logout</Nav.Item>
                                     :
-                                    <Link to={user ? '#' : '/login'} >
+                                    <Link to={user ? '#' : '/login'} className='mx-2 mt-1'>
                                         Login
                                     </Link>
                             }

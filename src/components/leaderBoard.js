@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import LeaderBoardItem from './leaderBoardItem';
-import { Container, Col, Row } from 'react-bootstrap'
+import { Col, Row } from 'react-bootstrap'
 
 const LeaderBoard = (props) => {
     const { sortedLeaderBoard } = props;
     return (
-        <Container>
+        <Row className="justify-content-center">
             <Col lg={5}>
                 <Row className="justify-content-center">
                     {
@@ -17,7 +17,7 @@ const LeaderBoard = (props) => {
 
                 </Row>
             </Col>
-        </Container>
+        </Row>
     )
 }
 

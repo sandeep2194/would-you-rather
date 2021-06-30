@@ -2,16 +2,24 @@ import React, { Fragment } from 'react'
 import { BrowserRouter as Router } from 'react-router-dom';
 import Routes from './components/routes'
 import Header from './components/header'
+import { handleInitialData } from './actions/initialData'
+import { connect } from 'react-redux';
 
-function App() {
-  return (
-    <Router>
-      <Fragment>
-        <Header />
-        <Routes />
-      </Fragment>
-    </Router>
-  );
+class App extends React.Component {
+  componentDidMount() {
+    const { dispatch } = this.props
+    dispatch(handleInitialData())
+  }
+  render() {
+    return (
+      <Router>
+        <Fragment>
+          <Header />
+          <Routes />
+        </Fragment>
+      </Router>
+    );
+  }
 }
 
-export default App;
+export default connect()(App);

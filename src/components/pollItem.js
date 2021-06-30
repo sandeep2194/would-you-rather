@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { Container, Row, Col, Button, Form, Image } from 'react-bootstrap'
 import { PersonCircle } from 'react-bootstrap-icons'
 import { connect } from 'react-redux'
-import { updatePoll } from '../actions/polls'
+import { updatePoll, handlePollToServer } from '../actions/polls'
 import { updatePollsAnswered } from '../actions/users'
 import { Link } from 'react-router-dom'
 import { incrementScore } from '../actions/leaderBoard'
@@ -31,6 +31,7 @@ class PollItem extends React.Component {
         dispatch(updatePoll(option, poll.id))
         dispatch(updatePollsAnswered(loggedInUser.id, poll.id))
         dispatch(incrementScore(loggedInUser.id))
+        dispatch(handlePollToServer(option, poll.id, loggedInUser.id))
     }
     render() {
         const { poll, user, polls_answered } = this.props
