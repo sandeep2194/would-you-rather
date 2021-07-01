@@ -1,5 +1,5 @@
 ## Welcome to Would you rather app Repo
-This is game based on would you rather questions where player gets 2 choices and gets points for answering questions. The player who answers most  wins.
+This is a game based on would you rather questions where player gets 2 choices and gets points for answering questions. The player who answers most questions wins.
 
 ### `npm install`
 Run npm install to install dependencies.
