@@ -15,7 +15,6 @@ const PollsList = (props) => {
                             {
                                 sortedPolls.length > 0 ?
                                     sortedPolls.map((poll, i) => (
-
                                         user && !user.polls_answered.includes(poll.id) &&
                                         <PollItem poll={poll} key={i} />
                                     ))
