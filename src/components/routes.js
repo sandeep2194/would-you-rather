@@ -39,7 +39,9 @@ const routes = (props) => {
             <Route path="/questions/:question_id" component={PollItem}>
                 {!isLoggedIn && <Redirection to="/login" back='/home' />}
             </Route>
-            <Route component={FourZeroFour} />
+            <Route render={(props) => {
+                return isLoggedIn ? <FourZeroFour /> : <Redirection to="/login" back={props.location.pathname} />
+            }} />
         </Switch>
     )
 }
