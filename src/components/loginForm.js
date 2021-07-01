@@ -17,11 +17,12 @@ class LoginForm extends React.Component {
     handleSubmit = (event) => {
         const { dispatch, history } = this.props
         const { id } = this.state
+        const back = this.props.location.state.referrer
         event.preventDefault()
         if (id) {
             dispatch(handleLogin(id))
             this.setState({ id: '' })
-            history.push('/home')
+            history.push(back)
         }
     }
     render() {

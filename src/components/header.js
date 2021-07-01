@@ -19,10 +19,10 @@ const Header = (props) => {
                         <Link to="/home" className='mx-2'>
                             Home
                         </Link>
-                        <Link to="/create-poll" className='mx-2' >
+                        <Link to="/add" className='mx-2' >
                             New Question
                         </Link>
-                        <Link to='/leader-board' className='mx-2'>Leader Board</Link>
+                        <Link to='/leaderboard' className='mx-2'>Leader Board</Link>
                     </Nav>
                     <Col>
                         <Row className="justify-content-end" >

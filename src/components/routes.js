@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Redirect, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import PollsList from './pollsList'
 import LoginForm from './loginForm'
 import Results from './results'
@@ -8,6 +8,8 @@ import SignUpForm from './signUp'
 import { connect } from 'react-redux'
 import LeaderBoard from './leaderBoard'
 import FourZeroFour from './404';
+import Redirection from './Redirection'
+
 const routes = (props) => {
     const { isLoggedIn } = props
     return (
@@ -15,23 +17,23 @@ const routes = (props) => {
             <Route exact path="/" >
                 {
                     isLoggedIn
-                        ? <Redirect to="/home" />
-                        : <Redirect to='/login' />
+                        ? <Redirection to="/home" back='/' />
+                        : <Redirection to='/login' back='/' />
                 }
             </Route>
             <Route path="/home" component={PollsList}>
-                {!isLoggedIn && <Redirect to="/login" />}
+                {!isLoggedIn && <Redirection to="/login" back='/home' />}
             </Route>
             <Route path="/login" component={LoginForm} />
             <Route path="/signup" component={SignUpForm} />
-            <Route path="/create-poll" component={CreatePoll} >
-                {!isLoggedIn && <Redirect to="/login" />}
+            <Route path="/add" component={CreatePoll} >
+                {!isLoggedIn && <Redirection to="/login" back='/add' />}
             </Route>
             <Route path="/results/:pollId" component={Results} >
-                {!isLoggedIn && <Redirect to="/login" />}
+                {!isLoggedIn && <Redirection to="/login" />}
             </Route>
-            <Route path="/leader-board" component={LeaderBoard} >
-                {!isLoggedIn && <Redirect to="/login" />}
+            <Route path="/leaderboard" component={LeaderBoard} >
+                {!isLoggedIn && <Redirection to="/login" back='/leaderboard' />}
             </Route>
             <Route component={FourZeroFour} />
         </Switch>
