@@ -54,13 +54,16 @@ class PollItem extends React.Component {
                     </Col>
                     <Row className='justify-content-center '>
                         <Col className='pt-2'>
-                            <h4>Would you rather?</h4>
+                            <Link to={`/questions/${poll.id}`}>
+                                <h4>Would you rather?</h4>
+                            </Link>
                             <Form onSubmit={this.handleSubmit}>
                                 {
                                     !polls_answered.includes(poll.id) ?
                                         <Fragment>
                                             <Form.Check
                                                 name='options'
+                                                id='option1'
                                                 type='radio'
                                                 label={poll.option1}
                                                 checked={option1}
@@ -68,6 +71,7 @@ class PollItem extends React.Component {
                                             />
                                             <Form.Check
                                                 name='options'
+                                                id='option2'
                                                 type='radio'
                                                 label={poll.option2}
                                                 checked={option2}
@@ -92,14 +96,18 @@ class PollItem extends React.Component {
         )
     }
 }
-function mapStateToProps({ users }, props) {
-    const user = users[props.poll.authorId]
+function mapStateToProps({ users, polls }, props) {
+    const question_id = props.match ? props.match.params.question_id : false
+    //  console.log(props.match.params.question_id)
+    const pollFromUrl = polls[question_id]
+    const user = question_id ? users[pollFromUrl.authorId] : users[props.poll.authorId]
     const userId = users.authedUser
     const loggedInUser = users[userId]
     return {
         user,
         loggedInUser,
-        polls_answered: loggedInUser.polls_answered
+        polls_answered: loggedInUser.polls_answered,
+        poll: question_id ? pollFromUrl : props.poll
     }
 }
 export default connect(mapStateToProps)(PollItem)

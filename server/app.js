@@ -17,7 +17,8 @@ let data = {
             results: {
                 option1: 0,
                 option2: 0,
-            }
+            },
+            timestamp: 1519211810362
         }
     },
     users: {
@@ -27,11 +28,22 @@ let data = {
             polls_created: ['abc1'],
             name: "test user",
             pic: "https://i.ibb.co/drpCp7b/download.jpg"
+        },
+        'user2': {
+            id: 'user2',
+            polls_answered: [],
+            polls_created: [],
+            name: "test user 2",
+            pic: 'https://upload.wikimedia.org/wikipedia/commons/5/5c/Guy_Pearce_Cannes_2012_%28revised%29.jpg'
         }
     },
     leaderBoard: {
         'user1': {
             userId: 'user1',
+            score: 0,
+        },
+        'user2': {
+            userId: 'user2',
             score: 0,
         }
     },
@@ -44,8 +56,8 @@ app.get('/', (req, res) => {
 app.post('/createPoll', (req, res) => {
     const reqData = req.body
     data.polls[reqData.id] = { ...reqData }
-    const pollsA = data.users[reqData.authorId].polls_answered
-    pollsA.push(reqData.id)
+    const pollsC = data.users[reqData.authorId].polls_created
+    pollsC.push(reqData.id)
     res.send('success')
 })
 app.post('/createUser', (req, res) => {

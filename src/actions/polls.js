@@ -18,12 +18,13 @@ export function handlePollToServer(option, pollId, userId) {
         updateToServer({ option, pollId, userId })
     }
 }
-function createPoll(options, Id, authorId) {
+function createPoll(options, Id, authorId, timestamp) {
     return {
         type: CREATE_POLL,
         options,
         Id,
         authorId,
+        timestamp,
     }
 }
 
@@ -37,6 +38,7 @@ export function updatePoll(option, pollId) {
 
 export function handleCreatePoll(options, authorId) {
     const Id = uuidv4();
+    const timestamp = Date.now()
     return (dispatch) => {
         postPoll({
             id: Id, authorId: authorId,
@@ -44,9 +46,10 @@ export function handleCreatePoll(options, authorId) {
                 option1: 0,
                 option2: 0,
             },
+            timestamp: timestamp,
             ...options
         })
-        dispatch(createPoll(options, Id, authorId));
+        dispatch(createPoll(options, Id, authorId, timestamp));
         dispatch(updatePollsCreated(authorId, Id));
     }
 }

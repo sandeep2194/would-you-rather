@@ -13,6 +13,7 @@ export default function polls(state = {}, action) {
                         option1: 0,
                         option2: 0,
                     },
+                    timestamp: action.timestamp,
                     ...action.options
                 }
             }

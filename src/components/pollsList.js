@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 const PollsList = (props) => {
     const { polls, user } = props
+    const sortedPolls = Object.values(polls).sort((a, b) => b.timestamp - a.timestamp)
     return (
         <Container className='my-5'>
             <Row className='justify-content-center'>
@@ -12,8 +13,8 @@ const PollsList = (props) => {
                     <Tabs defaultActiveKey="unanswered" id="uncontrolled-tab" className="mb-3">
                         <Tab eventKey="unanswered" title="Unanswered Questions">
                             {
-                                Object.values(polls).length > 0 ?
-                                    Object.values(polls).map((poll, i) => (
+                                sortedPolls.length > 0 ?
+                                    sortedPolls.map((poll, i) => (
 
                                         user && !user.polls_answered.includes(poll.id) &&
                                         <PollItem poll={poll} key={i} />
@@ -29,8 +30,8 @@ const PollsList = (props) => {
                         </Tab>
                         <Tab eventKey="answered" title="Answered Questions">
                             {
-                                Object.values(polls).length > 0 ?
-                                    Object.values(polls).map((poll, i) => (
+                                sortedPolls.length > 0 ?
+                                    sortedPolls.map((poll, i) => (
                                         user && user.polls_answered.includes(poll.id) &&
                                         <PollItem poll={poll} key={i} />
                                     ))

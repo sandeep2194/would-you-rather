@@ -9,6 +9,7 @@ import { connect } from 'react-redux'
 import LeaderBoard from './leaderBoard'
 import FourZeroFour from './404';
 import Redirection from './Redirection'
+import PollItem from './pollItem';
 
 const routes = (props) => {
     const { isLoggedIn } = props
@@ -34,6 +35,9 @@ const routes = (props) => {
             </Route>
             <Route path="/leaderboard" component={LeaderBoard} >
                 {!isLoggedIn && <Redirection to="/login" back='/leaderboard' />}
+            </Route>
+            <Route path="/questions/:question_id" component={PollItem}>
+                {!isLoggedIn && <Redirection to="/login" back='/home' />}
             </Route>
             <Route component={FourZeroFour} />
         </Switch>

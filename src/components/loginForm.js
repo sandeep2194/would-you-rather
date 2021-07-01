@@ -47,8 +47,8 @@ class LoginForm extends React.Component {
                                     <select className='form-control' onChange={this.handleChange}>
                                         <option>Select a User</option>
                                         {
-                                            Object.values(users).map((user) => (
-                                                <option key={user.id} value={user.id}>
+                                            Object.values(users).map((user, i) => (
+                                                <option key={i} value={user.id}>
                                                     {user.name}
                                                 </option>
                                             ))
